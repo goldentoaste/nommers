@@ -1,6 +1,7 @@
 <script>
     import Memberstatus from "./memberstatus.svelte";
-  
+    import { onMount } from "svelte";
+    import { places, finishedMembers,partyNumber } from "../../votingstates";
     let restaurantImg = "placeholder/restaurant.jpg";
     let restaurantName = "Chipotle Mexican Grill";
     let restaurantCaption = "Mexican restaurant";
@@ -10,6 +11,9 @@
     let address = "4700 Kingsway #2200, Burnaby, BC V5H 4M1";
     let description =
       "Fast-food chain offering Mexican fare including design-your-own burritos, tacos, and bowls.";
+
+    let totalLength = ($places).length;
+    let index = 0;
   </script>
   
   <div class="voting-content">
@@ -83,11 +87,17 @@
   
     <div class="party-information">
       <div class="party-members">
-        <!-- <PartyMemberStatus voting_complete={true} />
-        <PartyMemberStatus voting_complete={true} />
-        <PartyMemberStatus voting_complete={true} />
-        <PartyMemberStatus voting_complete={false} />
-        <PartyMemberStatus voting_complete={false} /> -->
+        {#each Array($finishedMembers).keys() as index }
+        
+        <Memberstatus voting_complete={true} />
+
+        {/each}
+
+        {#each Array($partyNumber - $finishedMembers).keys() as index }
+        
+        <Memberstatus voting_complete={false} />
+
+        {/each}
       </div>
       <span class="caption-text">Waiting for 4 others to finish voting...</span>
     </div>

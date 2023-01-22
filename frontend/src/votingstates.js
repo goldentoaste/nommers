@@ -34,12 +34,12 @@ export const openWebsocket = (partyid, memberid)=> {
 
     socket.onmessage = (e) =>{
         console.log(e)
-        data = JSON.parse(e.data)
+        let data = JSON.parse(e.data)
 
-        msg = data['message']
+        let msg = data['message']
         
         if (msg.includes("total count")){
-            count = parseInt(msg.split(":")[1])
+            let count = parseInt(msg.split(":")[1])
 
             totalmembers.set(count);
         }
@@ -49,7 +49,7 @@ export const openWebsocket = (partyid, memberid)=> {
         }
 
         if (msg.includes("finish")){
-            count = parseInt(msg.split(":")[1])
+            let count = parseInt(msg.split(":")[1])
 
             finishedMembers.set(count)
         }

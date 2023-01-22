@@ -57,7 +57,6 @@
             }).catch((e)=>alert(e));
     };
 
-   
 </script>
 {#if $partyNumber === 0}
 <div class="create-party">
