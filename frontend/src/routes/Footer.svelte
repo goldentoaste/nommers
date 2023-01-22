@@ -10,14 +10,14 @@
   <div class="footer-links">
     <a
       class="body-title"
-      href="">GitHub</a
+      href="https://github.com/goldentoaste/nommers">GitHub</a
     >
 
     ∙
 
     <a
       class="body-title"
-      href="">DevPost</a
+      href="https://devpost.com/software/nommers">DevPost</a
     >
 
     ∙

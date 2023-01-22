@@ -25,8 +25,8 @@
     </div>
 
     <div class="links">
-      <a href="">GitHub</a>
-      <a href="">DevPost</a>
+      <a href="https://github.com/goldentoaste/nommers">GitHub</a>
+      <a href="https://devpost.com/software/nommers">DevPost</a>
       <a href="/login">Log in</a>
       <a href="/signup">Sign up</a>
     </div>
