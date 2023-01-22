@@ -1,6 +1,6 @@
 <script>
   import PartyMemberStatus from "./PartyMemberStatus.svelte";
-  import Drag from "./Drag.svelte";
+  import Drag from "../lobby/Drag.svelte";
 
   let restaurantImg = "placeholder/restaurant.jpg";
   let restaurantName = "Chipotle Mexican Grill";
@@ -24,54 +24,7 @@
   </div>
 
   <Drag />
-  <!-- 
-  <div class="restaurant-card">
-    <div
-      class="restaurant-img"
-      style="background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0) 32.81%,
-      rgba(0, 0, 0, 0.9) 100%
-    ),
-    url({restaurantImg})"
-    >
-      <div class="restaurant-details">
-        <h5> {restaurantName}</h5>
-        <span>{restaurantCaption}</span>
-        <div class="restaurant-img-info">
-          <span>{starRating} ★</span>
-          <span>•</span>
-          <span>{dollarRating}</span>
-          <span>•</span>
-          <span>{distance}</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="restaurant-info">
-      <div>
-        <div class="restaurant-icon">
-          <img
-            src="icons/map.svg"
-            alt="Address icon"
-          />
-        </div>
-
-        <span>{address}</span>
-      </div>
-
-      <div>
-        <div class="restaurant-icon">
-          <img
-            src="icons/description.svg"
-            alt="Address icon"
-          />
-        </div>
-
-        <span>{description}</span>
-      </div>
-    </div>
-  </div> -->
+  
 
   <div class="loader">
     <div class="loader-bar">
@@ -86,11 +39,7 @@
 
   <div class="party-information">
     <div class="party-members">
-      <PartyMemberStatus voting_complete={true} />
-      <PartyMemberStatus voting_complete={true} />
-      <PartyMemberStatus voting_complete={true} />
-      <PartyMemberStatus voting_complete={false} />
-      <PartyMemberStatus voting_complete={false} />
+    
     </div>
     <span class="caption-text">Waiting for 4 others to finish voting...</span>
   </div>

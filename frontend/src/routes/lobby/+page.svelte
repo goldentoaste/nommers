@@ -34,6 +34,8 @@
         }
       ))
     }
+
+    $: console.log($currentState)
 </script>
 
 
@@ -43,5 +45,5 @@
 
 
 {#if $currentState == voting}
-<Voting></Voting>
+<Voting bind:socket={socket}></Voting>
 {/if}
