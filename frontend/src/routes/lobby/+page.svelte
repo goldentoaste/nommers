@@ -23,7 +23,7 @@
     let socket;
 
     onMount(async () => {
-
+      alert($partyNumber)
         socket = openWebsocket($partyNumber, $accountId);
     });
 

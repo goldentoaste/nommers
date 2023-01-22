@@ -33,6 +33,7 @@ export const openWebsocket = (partyid, memberid)=> {
     }
 
     socket.onmessage = (e) =>{
+        console.log(e)
         data = JSON.parse(e.data)
 
         msg = data['message']

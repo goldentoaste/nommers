@@ -35,7 +35,7 @@ class EchoWSConsumer(AsyncWebsocketConsumer):
     @database_sync_to_async
     def countMember(self):
         return Member.objects.filter(
-            party__id=int(self.groupName)
+            party__id=int(self.roomName)
         ).count()
 
     @database_sync_to_async

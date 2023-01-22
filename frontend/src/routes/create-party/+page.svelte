@@ -1,7 +1,7 @@
 <script>
   import ButtonGroup from "./ButtonGroup.svelte";
   import { accountId } from "../../account";
-  import Lobby from "./lobby.svelte";
+  import Lobby from "../lobby/+page.svelte";
   import {
     partyNumber,
     currentState,
