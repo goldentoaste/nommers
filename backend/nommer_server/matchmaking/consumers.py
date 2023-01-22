@@ -163,7 +163,7 @@ class EchoWSConsumer(AsyncWebsocketConsumer):
             return await self.send(
                 text_data=json.dumps(
                     {
-                        "message": message
+                        "message": message  
                     }
                 )
             )
@@ -178,4 +178,12 @@ class EchoWSConsumer(AsyncWebsocketConsumer):
                 )
             )
         
-        
+        if message == "start":
+            return await self.send(
+                text_data=json.dumps(
+                    {
+                        "message": "start",
+                 
+                    }
+                )
+            )
