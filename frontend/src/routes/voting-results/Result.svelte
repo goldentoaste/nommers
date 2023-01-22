@@ -8,13 +8,6 @@
 <div class="voting-result">
   <h4 class="rank">#{rank}</h4>
 
-  <div class="result-img">
-    <img
-      src={restaurant_img}
-      alt="Restaurant of result"
-    />
-  </div>
-
   <div class="result-info">
     <h5>{restaurant_name}</h5>
     <span>{num_of_votes} votes</span>
@@ -23,7 +16,7 @@
 
 <style>
   .rank {
-    width: 15%;
+    width: 20%;
   }
 
   .voting-result {
@@ -32,7 +25,7 @@
     flex-direction: row;
     gap: var(--sp-md);
     padding: var(--sp-sm);
-    background-color: var(--black-100);
+    background-color: var(--black-50);
     border-radius: var(--sp-xs);
   }
 
