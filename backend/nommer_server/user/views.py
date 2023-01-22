@@ -15,6 +15,7 @@ from .auth import IdAuthtication
 @authentication_classes([IdAuthtication(bypass=True)])
 def signUp(request: Request):
     data : dict = request.data # type: ignore
+
     try:
         user = User.objects.create_user(
             data['userName'],
