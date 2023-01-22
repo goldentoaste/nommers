@@ -46,7 +46,7 @@
             body: JSON.stringify(params),
         })
             .then((res) => res.json())
-            .then((res) => {
+            .then((res) => {  
               partyNumber.set(res['id'])
               places.set(JSON.parse(res['response']))
               isOwner.set(true)

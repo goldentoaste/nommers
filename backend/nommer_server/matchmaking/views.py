@@ -75,6 +75,8 @@ def makeParty(request: Request) :
                     party = party,
                     placeid = item['place_id']
                 )
+        party.response = json.dumps(results)
+        party.save()
 
         
         serial = PartySerial(party)
