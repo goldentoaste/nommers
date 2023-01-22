@@ -1,18 +1,29 @@
-
 <script>
-import { accountId } from "../../account";
+  import { accountId } from "../../account";
 
-  const logout = ()=>{
+  const logout = () => {
     $accountId = null;
 
-    window.location.href = "/login"
-  }
+    window.location.href = "/login";
+  };
+
+  import { bind } from "svelte/internal";
+
+  import { partyNumber } from "../../votingstates";
+  let roomcode = "";
+
+  const joinRoom = () => {
+    if (!isNaN(roomcode)) {
+      partyNumber.set(parseInt(roomcode));
+      window.location.href = "/lobby";
+    }
+  };
 </script>
 
 <div class="home">
   <div class="home-img">
     <img
-      src="nommers_logo.svg"
+      src="nommers-logo.png"
       alt="Nommers logo"
     />
   </div>
@@ -22,18 +33,33 @@ import { accountId } from "../../account";
     <p class="body-text">Say yes to more food and less stress with Nommers.</p>
 
     <div class="home-actions">
+      <div class="enter-lobby-code">
+        <span class="caption-text">Enter lobby code</span>
+        <input
+          type="text"
+          bind:value={roomcode}
+        />
+        <a
+          class="body-title primary-action"
+          on:click={joinRoom}>Join lobby</a
+        >
+      </div>
+
+      <div class="separator overline">OR</div>
+
       <a
-        class="body-title primary-action"
+        class="body-title secondary-action"
         href="/create-party">Create party</a
       >
-      <div class="body-title secondary-action">Join party</div>
-      
     </div>
   </div>
 
   <div class="user-information">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div on:click={logout} class="body-title secondary-action">Logout</div>
+    <div
+      on:click={logout}
+      class="body-title secondary-action">Logout</div
+    >
     <!-- <p class="caption-text">Your username</p>
     <p class="body-title">FatPenguin</p> -->
   </div>
@@ -48,6 +74,7 @@ import { accountId } from "../../account";
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    background-color: var(--secondary-50);
   }
 
   .home > div {
@@ -55,6 +82,15 @@ import { accountId } from "../../account";
   }
 
   .home-title {
+    padding: var(--sp-4xl) var(--sp-2xl);
+    background-color: white;
+    border-radius: var(--sp-md);
+    border: 1px solid var(--secondary-100);
+    max-width: 640px;
+  }
+
+  .home-title,
+  .user-information {
     width: 75%;
   }
 
@@ -66,7 +102,25 @@ import { accountId } from "../../account";
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: var(--sp-sm);
+    gap: var(--sp-lg);
+  }
+
+  .user-information {
+    max-width: 520px;
+  }
+
+  .home-actions > .caption-text {
+    text-align: left;
+  }
+
+  .enter-lobby-code {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .enter-lobby-code > input {
+    margin-bottom: var(--sp-sm);
   }
 
   .primary-action,
@@ -86,5 +140,31 @@ import { accountId } from "../../account";
   .secondary-action {
     color: var(--secondary-500);
     background-color: var(--secondary-100);
+  }
+
+  .overline {
+    margin: 0;
+  }
+
+  .separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--secondary-400);
+  }
+
+  .separator::before,
+  .separator::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid var(--secondary-300);
+  }
+
+  .separator:not(:empty)::before {
+    margin-right: 0.25em;
+  }
+
+  .separator:not(:empty)::after {
+    margin-left: 0.25em;
   }
 </style>
