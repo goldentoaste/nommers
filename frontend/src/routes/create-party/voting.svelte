@@ -1,5 +1,5 @@
 <script>
-    import PartyMemberStatus from "./PartyMemberStatus.svelte";
+    import Memberstatus from "./memberstatus.svelte";
   
     let restaurantImg = "placeholder/restaurant.jpg";
     let restaurantName = "Chipotle Mexican Grill";
@@ -83,11 +83,11 @@
   
     <div class="party-information">
       <div class="party-members">
-        <PartyMemberStatus voting_complete={true} />
+        <!-- <PartyMemberStatus voting_complete={true} />
         <PartyMemberStatus voting_complete={true} />
         <PartyMemberStatus voting_complete={true} />
         <PartyMemberStatus voting_complete={false} />
-        <PartyMemberStatus voting_complete={false} />
+        <PartyMemberStatus voting_complete={false} /> -->
       </div>
       <span class="caption-text">Waiting for 4 others to finish voting...</span>
     </div>

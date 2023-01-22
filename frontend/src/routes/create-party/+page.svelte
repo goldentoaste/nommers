@@ -1,7 +1,7 @@
 <script>
   import ButtonGroup from "./ButtonGroup.svelte";
   import { accountId } from "../../account";
-
+  import Lobby from "./lobby.svelte";
   import {
     partyNumber,
     currentState,
@@ -54,13 +54,12 @@
               partyNumber.set(res['id'])
               places.set(JSON.parse(res['response']))
               isOwner.set(true)
-              window.location.href="/lobby"
             }).catch((e)=>alert(e));
     };
 
    
 </script>
-
+{#if $partyNumber === 0}
 <div class="create-party">
   <div class="create-party-input-group">
     <h4>Create a party</h4>
@@ -167,7 +166,9 @@
     >
   </div>
 </div>
-
+{:else}
+<Lobby></Lobby>
+{/if}
 <style>
   .create-party {
     padding: var(--sp-lg);
