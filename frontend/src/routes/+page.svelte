@@ -151,10 +151,10 @@
   <HeaderImg />
 
   <div class="technologies-used-content center-div content-div">
-    <p class="overline">Technologies used</p>
-    <h2>Built by an indecisive eater...</h2>
+    <p class="overline">Inspired by a certain someone's indecisiveness</p>
+    <h2>Built by a certain product designer who is an indecisive eater...</h2>
     <p class="body-text"
-      >...and the friend who has to put up with her indecisive eating.</p
+      >...and her backend developer best friend who has to put up with her indecisive eating.</p
     >
     <LogoCloud />
   </div>

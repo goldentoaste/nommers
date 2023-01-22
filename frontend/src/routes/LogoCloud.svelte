@@ -1,26 +1,26 @@
 <div class="logocloud">
   <img
-    src="placeholder/placeholder_1.png"
+    src="food_1.png"
     alt="Logo for one of our tech stack"
   />
   <img
-    src="placeholder/placeholder_2.png"
+    src="food_2.png"
     alt="Logo for one of our tech stack"
   />
   <img
-    src="placeholder/placeholder_1.png"
+    src="food_3.png"
     alt="Logo for one of our tech stack"
   />
   <img
-    src="placeholder/placeholder_1.png"
+    src="food_4.png"
     alt="Logo for one of our tech stack"
   />
   <img
-    src="placeholder/placeholder_2.png"
+    src="food_5.png"
     alt="Logo for one of our tech stack"
   />
   <img
-    src="placeholder/placeholder_1.png"
+    src="food_6.png"
     alt="Logo for one of our tech stack"
   />
 </div>
