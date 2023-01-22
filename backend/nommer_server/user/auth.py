@@ -1,13 +1,27 @@
-from models import User
+from .models import User
 
 from rest_framework import authentication
 from rest_framework import exceptions
 from rest_framework.request import Request
 
+class DummyAuthObject:
+    def __init__(self, user=False, is_authenticated = False):
+        self.user = user
+        self.is_authenticated = is_authenticated
+
 class IdAuthtication(authentication.BaseAuthentication):
-    
-    
+
+    def __call__(self, *args, **kwds):
+        return self
+        
+    def __init__(self, bypass = False) -> None:
+        super().__init__()
+        self.bypass = bypass
     def authenticate(self, request : Request):
+        if self.bypass:
+            print(request, "bypassing")
+            return (DummyAuthObject(True, True),None)
+
         print("auth", request)
         data = request.data
         
