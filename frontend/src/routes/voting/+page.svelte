@@ -172,6 +172,7 @@
 
   .restaurant-card {
     display: flex;
+    gap: var(--sp-xs);
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--black-100);
@@ -183,7 +184,7 @@
   .restaurant-img {
     color: white;
     padding: var(--sp-lg);
-    height: 70%;
+    height: calc(100% - (75px * 2) - var(--sp-md));
     background-size: cover;
     border-radius: var(--sp-sm);
     display: flex;
@@ -218,6 +219,6 @@
     width: calc(100% - var(--sp-xl));
     text-overflow: ellipsis;
     overflow: hidden;
-    max-height: 50px;
+    max-height: 75px;
   }
 </style>
