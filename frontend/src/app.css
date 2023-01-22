@@ -65,6 +65,11 @@
   src: url(../static/fonts/KindofMagic-Outlined.ttf);
 }
 
+@font-face {
+  font-family: Nickname;
+  src: url("../static/fonts/Nickname DEMO.otf");
+}
+
 body {
   font-family: "Poppins";
   margin: 0px;
@@ -169,11 +174,6 @@ h5 {
   color: var(--secondary-500);
   background-color: var(--secondary-100);
   border-radius: var(--sp-xl);
-}
-
-a,
-a:visited {
-  color: black;
 }
 
 input {

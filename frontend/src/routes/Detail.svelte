@@ -30,4 +30,14 @@
   .detail-content > :last-child {
     margin-bottom: 0;
   }
+
+  .detail-content > h4 {
+    margin-top: var(--sp-sm);
+  }
+
+  @media only screen and (min-width: 800px) {
+    .detail-content {
+      width: calc(100% / 3);
+    }
+  }
 </style>

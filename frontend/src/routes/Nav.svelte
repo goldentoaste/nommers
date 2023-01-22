@@ -18,7 +18,7 @@
       }}
     >
       <img
-        src="icons/menu_open.svg"
+        src="icons/menu_icon.svg"
         alt="Menu icon"
       />
     </div>
@@ -30,8 +30,8 @@
     position: fixed;
     z-index: 100;
     width: 100vw;
-    background-color: var(--primary-200);
-    border-bottom: 2px solid black;
+    background-color: var(--primary-100);
+    border-bottom: 2px solid var(--primary-200);
   }
 
   .header {
