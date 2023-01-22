@@ -14,9 +14,9 @@
     } from '../../votingstates.js';
     import { accountId } from '../../account.js';
     import { onMount } from 'svelte';
-    import Waiting from './waiting.svelte';
-    import Memberstatus from './memberstatus.svelte';
-    import Voting from './voting.svelte';
+    import Waiting from '../lobby/waiting.svelte';
+    import Memberstatus from '../lobby/memberstatus.svelte';
+    import Voting from '../lobby/voting.svelte';
     /**
    * @type {WebSocket}
    */
