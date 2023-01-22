@@ -26,19 +26,36 @@
   let dining_options = ["Takeout", "Delivery", "Dine in"];
   let offerings = ["Breakfast", "Brunch", "Lunch", "Dinner", "Vegetarian"];
 
-  const createParty = () => {
-    if (address.length == 0) {
-      return;
-    }
-    let params = {
-      id: $accountId,
-      address: address,
-      radius: 15000,
-      sortby: sort,
-      cost: price,
-      keywords: selected_dining_option.concat(selected_offerings),
-      rating: 3,
-      opennow: hours,
+    const createParty = () => {
+      if (address.length == 0){
+        return
+      }
+        let params = {
+            id: $accountId,
+            address: address,
+            radius: 15000,
+            sortby: sort,
+            cost: price,
+            keywords: selected_dining_option.concat(selected_offerings),
+            rating: 3,
+            opennow: hours,
+        };
+
+        fetch('http://server3-env.eba-7jgvjkan.us-west-2.elasticbeanstalk.com/makeparty/', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(params),
+        })
+            .then((res) => res.json())
+            .then((res) => {  
+              partyNumber.set(res['id'])
+              places.set(JSON.parse(res['response']))
+              isOwner.set(true)
+              window.location.href="/lobby"
+            }).catch((e)=>alert(e));
     };
 
     fetch(

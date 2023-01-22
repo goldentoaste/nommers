@@ -136,7 +136,10 @@ class EchoWSConsumer(AsyncWebsocketConsumer):
         return finishcount, finishcount == count
             
 
-        
+    @database_sync_to_async
+    def getResponse(self):
+        party = Party.objects.get(id=int(self.roomName))
+        return party.response
     
         
     @database_sync_to_async
@@ -155,7 +158,8 @@ class EchoWSConsumer(AsyncWebsocketConsumer):
         
         if message == "join":
             return await self.send(text_data=json.dumps({
-                "message": f"total count:{await self.countMember()}"
+                "message": f"total count:{await self.countMember()}",
+                "response": json.loads(await self.getResponse())
             }))
 
 
