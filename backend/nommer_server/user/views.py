@@ -11,6 +11,15 @@ from django.db.utils import IntegrityError
 from .auth import IdAuthtication
 
 
+@api_view(["GET"])
+@authentication_classes([IdAuthtication(bypass=True)])
+def getall(req):
+
+    users = User.objects.all()
+
+    serial = UserSerializer(users, many=True)
+
+    return Response(serial.data, status=200)
 @api_view(["POST"])
 @authentication_classes([IdAuthtication(bypass=True)])
 def signUp(request: Request):

@@ -1,3 +1,9 @@
+
+<script>
+
+  
+</script>
+
 <div class="login">
   <div class="login-fields">
     <div class="login-text">
@@ -19,9 +25,9 @@
     </div>
 
     <div class="login-actions">
-      <a
+      <div
         class="body-title primary-action"
-        href="/home">Create account</a
+       >Create account</div
       >
       <a
         class="body-title secondary-action"
