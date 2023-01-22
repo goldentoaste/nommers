@@ -4,7 +4,7 @@
     import { places, finishedMembers, partyNumber } from '../../votingstates';
     import Drag from './Drag.svelte';
 
-    
+
     let restaurantImg = 'placeholder/restaurant.jpg';
     let restaurantName = 'Chipotle Mexican Grill';
     let restaurantCaption = 'Mexican restaurant';
@@ -33,22 +33,12 @@
     {#key index}
         <Drag imageToken={obj.photoId} on:yes={
           ()=>{
-            socket.send(JSON.stringify(
-              {"message":"vote",
-              "placeid":placeid,
-              "upvote": true
-            }
-            ))
+           
             index += 1
           }
         }  on:no={
           ()=>{
-            socket.send(JSON.stringify(
-              {"message":"vote",
-              "placeid":placeid,
-              "upvote": false
-            }
-            ))
+          
             index += 1
           }
         }>
