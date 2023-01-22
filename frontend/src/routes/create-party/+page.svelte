@@ -26,148 +26,154 @@
   let dining_options = ["Takeout", "Delivery", "Dine in"];
   let offerings = ["Breakfast", "Brunch", "Lunch", "Dinner", "Vegetarian"];
 
-    const createParty = () => {
-      if (address.length == 0){
-        return
-      }
-        let params = {
-            id: $accountId,
-            address: address,
-            radius: 15000,
-            sortby: sort,
-            cost: price,
-            keywords: selected_dining_option.concat(selected_offerings),
-            rating: 3,
-            opennow: hours,
-        };
-
-        fetch('http://server3-env.eba-7jgvjkan.us-west-2.elasticbeanstalk.com/makeparty/', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(params),
-        })
-            .then((res) => res.json())
-            .then((res) => {  
-              partyNumber.set(res['id'])
-              places.set(JSON.parse(res['response']))
-              isOwner.set(true)
-            }).catch((e)=>alert(e));
+  const createParty = () => {
+    if (address.length == 0) {
+      return;
+    }
+    let params = {
+      id: $accountId,
+      address: address,
+      radius: 15000,
+      sortby: sort,
+      cost: price,
+      keywords: selected_dining_option.concat(selected_offerings),
+      rating: 3,
+      opennow: hours,
     };
 
+    fetch(
+      "http://server3-env.eba-7jgvjkan.us-west-2.elasticbeanstalk.com/makeparty/",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(params),
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        partyNumber.set(res["id"]);
+        places.set(JSON.parse(res["response"]));
+        isOwner.set(true);
+     
+      })
+      .catch((e) => alert(e));
+  };
 </script>
+
 {#if $partyNumber === 0}
-<div class="create-party">
-  <div class="create-party-input-group">
-    <h4>Create a party</h4>
-    <div class="input-group">
-      <p class="caption-text">Address</p>
-      <input
-        type="text"
-        bind:value={address}
-      />
-    </div>
-    <div class="input-group">
-      <p class="caption-text">Sort by</p>
-      <ButtonGroup
-        bind:val={sort}
-        valMaps={{
-          Relevance: "prominence",
-          Distance: "distance",
-        }}
-      />
-    </div>
-
-    <div class="input-group">
-      <p class="caption-text">Price</p>
-      <ButtonGroup
-        bind:val={price}
-        valMaps={{
-          $: 1,
-          $$: 2,
-          $$$: 3,
-          $$$$: 4,
-        }}
-      />
-    </div>
-
-    <div class="input-group">
-      <p class="caption-text">Rating (at least)</p>
-      <ButtonGroup
-        bind:val={rating}
-        valMaps={{
-          Any: 1,
-          "2 ★": 2,
-          "3 ★": 3,
-          "4 ★": 4,
-        }}
-      />
-    </div>
-
-    <div class="input-group">
-      <p class="caption-text">Hours</p>
-      <ButtonGroup
-        bind:val={hours}
-        valMaps={{
-          Any: false,
-          "Open now": true,
-        }}
-      />
-    </div>
-
-    <div class="checkboxes-div">
+  <div class="create-party">
+    <div class="create-party-input-group">
+      <h4>Create a party</h4>
       <div class="input-group">
-        <p class="caption-text">Dining options</p>
-        <div class="checkbox-group">
-          {#each dining_options as options}
-            <label>
-              <input
-                type="checkbox"
-                bind:group={selected_dining_option}
-                name="dining_options"
-                value={options}
-              />
-              {options}
-            </label>
-          {/each}
-        </div>
+        <p class="caption-text">Address</p>
+        <input
+          type="text"
+          bind:value={address}
+        />
+      </div>
+      <div class="input-group">
+        <p class="caption-text">Sort by</p>
+        <ButtonGroup
+          bind:val={sort}
+          valMaps={{
+            Relevance: "prominence",
+            Distance: "distance",
+          }}
+        />
       </div>
 
       <div class="input-group">
-        <p class="caption-text">Offerings</p>
-        <div class="checkbox-group">
-          {#each offerings as offering}
-            <label>
-              <input
-                type="checkbox"
-                bind:group={selected_offerings}
-                name="offerings"
-                value={offering}
-              />
-              {offering}
-            </label>
-          {/each}
+        <p class="caption-text">Price</p>
+        <ButtonGroup
+          bind:val={price}
+          valMaps={{
+            $: 1,
+            $$: 2,
+            $$$: 3,
+            $$$$: 4,
+          }}
+        />
+      </div>
+
+      <div class="input-group">
+        <p class="caption-text">Rating (at least)</p>
+        <ButtonGroup
+          bind:val={rating}
+          valMaps={{
+            Any: 1,
+            "2 ★": 2,
+            "3 ★": 3,
+            "4 ★": 4,
+          }}
+        />
+      </div>
+
+      <div class="input-group">
+        <p class="caption-text">Hours</p>
+        <ButtonGroup
+          bind:val={hours}
+          valMaps={{
+            Any: false,
+            "Open now": true,
+          }}
+        />
+      </div>
+
+      <div class="checkboxes-div">
+        <div class="input-group">
+          <p class="caption-text">Dining options</p>
+          <div class="checkbox-group">
+            {#each dining_options as options}
+              <label>
+                <input
+                  type="checkbox"
+                  bind:group={selected_dining_option}
+                  name="dining_options"
+                  value={options}
+                />
+                {options}
+              </label>
+            {/each}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <p class="caption-text">Offerings</p>
+          <div class="checkbox-group">
+            {#each offerings as offering}
+              <label>
+                <input
+                  type="checkbox"
+                  bind:group={selected_offerings}
+                  name="offerings"
+                  value={offering}
+                />
+                {offering}
+              </label>
+            {/each}
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="create-party-actions">
-    <div
-      class="body-title primary-action"
-      on:click={createParty}>Create party</div
-    >
-    <a
-      class="body-title secondary-action"
-      href="/home">Back to home</a
-    >
+    <div class="create-party-actions">
+      <div
+        class="body-title primary-action"
+        on:click={createParty}>Create party</div
+      >
+      <a
+        class="body-title secondary-action"
+        href="/home">Back to home</a
+      >
+    </div>
   </div>
-</div>
 {:else}
-<Lobby></Lobby>
+  <Lobby />
 {/if}
+
 <style>
   .create-party {
     padding: var(--sp-lg);
