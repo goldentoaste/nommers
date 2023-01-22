@@ -57,7 +57,7 @@
         partyNumber.set(res["id"]);
         places.set(JSON.parse(res["response"]));
         isOwner.set(true);
-        window.location.href = "/lobby";
+     
       })
       .catch((e) => alert(e));
   };
