@@ -159,14 +159,14 @@ h5 {
 
 .primary-button {
   padding: var(--sp-sm) var(--sp-md);
-  color: var(--secondary-600);
-  background-color: var(--secondary-100);
+  color: var(--primary-500);
+  background-color: var(--primary-100);
   border-radius: var(--sp-xl);
 }
 
 .secondary-button {
   padding: var(--sp-xs) var(--sp-sm);
-  color: var(--secondary-600);
+  color: var(--secondary-500);
   background-color: var(--secondary-100);
   border-radius: var(--sp-xl);
 }
