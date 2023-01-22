@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-e)8&3j7(iny(@td_iv2xeqh&xqc6asq1s9)e(ehhd5mhm_ez=5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["django-env.eba-wypfuvgx.us-west-2.elasticbeanstalk.com"]
+ALLOWED_HOSTS = ["*"]
 AUTH_USER_MODEL = "user.User"
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "user",
     "matchmaking",
+    "nommerServer"
 ]
 
 MIDDLEWARE = [
@@ -83,17 +84,17 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3",}}
-DATABASES    = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME' : 'NOM_DB',
-        'USER' : 'sammy',
-        'PASSWORD': 'password',
-        'HOST': '127.0.0.1',
-        'PORT': '5432'
-    }
-}
+DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3",}}
+# DATABASES    = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME' : 'NOM_DB',
+#         'USER' : 'sammy',
+#         'PASSWORD': 'password',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432'
+#     }
+# }
 
 
 # Password validation
