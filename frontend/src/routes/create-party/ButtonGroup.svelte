@@ -1,16 +1,21 @@
 <script>
-  import ValueButton from "./ValueButton.svelte";
-  export let sort_by = "Relevance";
-  let sortOpts = ["Relevance", "Distance"];
-</script>
+    export let valMaps = {}; // {name:val, ...}
+    export let val;
 
-{#each sortOpts as s}
-  <ValueButton
-    value={s}
-    on:valChanged={(e) => {
-      sort_by = e.val;
-    }}
-  >
-    {s}
-  </ValueButton>
+    if (valMaps){
+      val = Object.values(valMaps)[0]
+    }
+    
+</script>
+<style>
+  .selected {
+    background-color: red;
+  }
+</style>
+
+
+{#each Object.entries(valMaps) as [name, varVal]}
+<button on:click={()=>{val = varVal}} class={varVal === val? "selected":""}>
+  {name}
+</button>
 {/each}
