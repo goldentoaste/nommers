@@ -3,6 +3,8 @@ export const waiting = "wait";
 export const voting = "vote";
 export const ending = "end";
 
+export const isOwner = writable(false)
+export const partyNumber = writable(0)
 export const currentState = writable(waiting)
 export const places = writable({})
 export const totalmembers = writable(0)
@@ -10,7 +12,7 @@ export const finishedMembers = writable(0)
 export const results = writable({})
 
 
-const openWebsocket = (partyid, memberid)=> {
+export const openWebsocket = (partyid, memberid)=> {
     let socket = new WebSocket(`ws://server3-env.eba-7jgvjkan.us-west-2.elasticbeanstalk.com/ws/${partyid}/${memberid}`)
 
     socket.onopen = (e)=>{
@@ -53,6 +55,7 @@ const openWebsocket = (partyid, memberid)=> {
 
         if (msg === "fullstop"){
             results.set(data["results"])
+            currentState.set(ending)
         }
     }
 

@@ -97,7 +97,7 @@ else:
             'NAME' : 'postgres',
             'USER' : 'postgres',
             'PASSWORD': 'adminadmin',
-            'HOST': 'nommerdb.cx2c5egqxvuo.us-west-2.rds.amazonaws.com',
+            'HOST': 'database-1.cx2c5egqxvuo.us-west-2.rds.amazonaws.com',
             'PORT': '5432'
         }
     }
