@@ -24,14 +24,16 @@ class RequestParam(models.Model):
         EXTRA = 4
 
     cost = models.IntegerField("max cost level", choices=Cost.choices, default=Cost.MED)
-
+    
     
 
 
 def randId():
     return random.randint(100001, 999999)
-class Party(models.Model):
 
+
+
+class Party(models.Model):
     id = models.IntegerField("party id", primary_key=True, validators=[MinValueValidator(100000), MaxValueValidator(999999)], default=randId )
     host = models.ForeignKey(User, on_delete=models.CASCADE)
 
