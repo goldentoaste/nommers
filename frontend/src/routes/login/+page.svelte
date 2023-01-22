@@ -7,7 +7,9 @@
   let password= "";
 
   onMount(async ()=>{
-    if ($accountId != null){
+    
+    if ($accountId && $accountId !== "null"){
+
       window.location.href = "/home"
     }
   })

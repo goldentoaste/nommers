@@ -104,9 +104,23 @@ class EchoWSConsumer(AsyncWebsocketConsumer):
                 self.groupName,
                 {
                     "type":"messageEvent",
-                    "message": "fullstop"
+                    "message": "fullstop",
+                    "results": await self.fullstop()
                 }
             )
+
+    @database_sync_to_async
+    def fullstop(self):
+        votes  = Vote.objects.filter(party__id=int(self.roomName))
+
+        res = {}
+        vote : Vote
+        for vote in votes:
+            res[vote.placeid] = {
+                "upvotes": vote.upvotes,
+                "downvotes": vote.downvotes
+            }
+        return votes
 
     @database_sync_to_async
     def finish(self):
@@ -145,11 +159,21 @@ class EchoWSConsumer(AsyncWebsocketConsumer):
             }))
 
 
-        if 'finish' in message or message == "fullstop":
+        if 'finish' in message:
             return await self.send(
                 text_data=json.dumps(
                     {
                         "message": message
+                    }
+                )
+            )
+
+        if "fullstop" in message:
+            return await self.send(
+                text_data=json.dumps(
+                    {
+                        "message": message,
+                        "result": event["result"]
                     }
                 )
             )
