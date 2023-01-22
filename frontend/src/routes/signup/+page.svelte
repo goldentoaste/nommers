@@ -41,7 +41,9 @@
         console.log($accountId)
         window.location.href = "/home"
       }
-    )
+    ).catch((err)=>{
+      alert("Sign up failed!")
+    })
 
   }
 </script>

@@ -27,9 +27,9 @@
       },
       body: JSON.stringify(
         {
-          'username':username,
+          'userName':username,
           'password':password,
-          'ppiurl':""
+  
         }
       )
     }).then((res)=>{
@@ -40,7 +40,9 @@
         console.log($accountId)
         window.location.href = "/home"
       }
-    )
+    ).catch((err)=>{
+      alert("Login failed!")
+    })
 
   }
 </script>

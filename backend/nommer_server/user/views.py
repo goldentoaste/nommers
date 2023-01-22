@@ -47,7 +47,7 @@ def signIn(request:Request):
     serial = LoginSerializer(data=data) # type: ignore
     if not serial.is_valid():
         return Response(serial.errors, status=status.HTTP_400_BAD_REQUEST)
-    user = authenticate(username=serial.data['userName'], password=serial.data["password"])
+    user = authenticate(username=serial.data['username'], password=serial.data["password"])
     if not user:
         return Response(
             "Invalid login info.",
