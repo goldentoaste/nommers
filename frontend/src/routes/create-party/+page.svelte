@@ -58,26 +58,7 @@
             }).catch((e)=>alert(e));
     };
 
-    fetch(
-      "http://server3-env.eba-7jgvjkan.us-west-2.elasticbeanstalk.com/makeparty/",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(params),
-      }
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        partyNumber.set(res["id"]);
-        places.set(JSON.parse(res["response"]));
-        isOwner.set(true);
-        window.location.href = "/lobby";
-      })
-      .catch((e) => alert(e));
-  };
+   
 </script>
 
 <div class="create-party">
