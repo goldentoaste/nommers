@@ -57,15 +57,17 @@ def makeParty(request: Request) :
             if item["rating"] >= rating and item["price_level"] <= cost:
                 results.append(
                     {
-                        "id":item['place_id'],
-                        "type": item['types'][0],
-                        "name":item["name"],
-                        "rating": item["rating"],
-                        "price": item["price_level"],
-                        "address": item['vicinity'],
-                        "photoId": item["photos"][0]["photo_reference"],
-                        "lat": item['geometry']['location']['lat'],
-                        "long": item['geometry']['location']['lng'],
+                        item['place_id']:
+                        { 
+                            "type": item['types'][0],
+                            "name":item["name"],
+                            "rating": item["rating"],
+                            "price": item["price_level"],
+                            "address": item['vicinity'],
+                            "photoId": item["photos"][0]["photo_reference"],
+                            "lat": item['geometry']['location']['lat'],
+                            "long": item['geometry']['location']['lng'],
+                        }
                         
                     }
                 )

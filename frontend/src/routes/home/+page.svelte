@@ -1,3 +1,14 @@
+
+<script>
+import { accountId } from "../../account";
+
+  const logout = ()=>{
+    $accountId = null;
+
+    window.location.href = "/login"
+  }
+</script>
+
 <div class="home">
   <div class="home-img">
     <img
@@ -15,14 +26,16 @@
         class="body-title primary-action"
         href="/create-party">Create party</a
       >
-      <a class="body-title secondary-action">Join party</a>
-      <a class="body-title secondary-action">Change username</a>
+      <div class="body-title secondary-action">Join party</div>
+      
     </div>
   </div>
 
   <div class="user-information">
-    <p class="caption-text">Your username</p>
-    <p class="body-title">FatPenguin</p>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div on:click={logout} class="body-title secondary-action">Logout</div>
+    <!-- <p class="caption-text">Your username</p>
+    <p class="body-title">FatPenguin</p> -->
   </div>
 </div>
 
