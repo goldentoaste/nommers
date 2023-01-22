@@ -45,6 +45,13 @@
   --black-400: #52525b;
   --black-500: #27272a;
   --black-600: #000000;
+
+  --green-100: #f0fdf4;
+  --green-200: #dcfce7;
+  --green-300: #bbf7d0;
+  --green-400: #86efac;
+  --green-500: #22c55e;
+  --green-600: #16a34a;
 }
 
 /* FONT STYLING */
