@@ -1,5 +1,6 @@
 <script>
   import PartyMemberStatus from "./PartyMemberStatus.svelte";
+  import Drag from "./Drag.svelte";
 
   let restaurantImg = "placeholder/restaurant.jpg";
   let restaurantName = "Chipotle Mexican Grill";
@@ -22,6 +23,8 @@
     >
   </div>
 
+  <Drag />
+  <!-- 
   <div class="restaurant-card">
     <div
       class="restaurant-img"
@@ -68,7 +71,7 @@
         <span>{description}</span>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="loader">
     <div class="loader-bar">
