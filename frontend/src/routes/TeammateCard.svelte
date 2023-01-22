@@ -36,10 +36,6 @@
 </script>
 
 <div class="teammate-card">
-  <img
-    src={img_link}
-    alt="Teammate"
-  />
   <h4>{name}</h4>
   <h5>{title}</h5>
   <p class="body">{description}</p>
