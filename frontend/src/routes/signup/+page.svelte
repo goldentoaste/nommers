@@ -1,8 +1,17 @@
 
 <script>
   import { accountId } from "../../account";
+  import { onMount } from "svelte";
   let username = "";
   let password= "";
+
+  onMount(async ()=>{
+
+    if ($accountId != null){
+      window.location.href = "/home"
+
+    }
+  })
 
   const signup = ()=>{
 
@@ -30,6 +39,7 @@
       (res)=>{
         $accountId = res["id"]
         console.log($accountId)
+        window.location.href = "/home"
       }
     )
 
