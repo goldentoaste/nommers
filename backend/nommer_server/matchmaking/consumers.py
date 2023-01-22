@@ -5,12 +5,17 @@ import json
 from channels.generic.websocket import WebsocketConsumer, AsyncWebsocketConsumer
 
 from asgiref.sync import async_to_sync
-
+from channels.db import database_sync_to_async
+from .models import Member, Party, Vote
+from user.models import User
+from django.db.models import F
 class EchoWSConsumer(AsyncWebsocketConsumer):
     
     async def connect(self):
         
-        self.roomName = self.scope['url_route']['kwargs']['name']
+        self.roomName = self.scope['url_route']['kwargs']['partyid']
+        self.memberId = self.scope['url_route']['kwargs']['memberid']
+        
         self.groupName = f"group{self.roomName}"
         
         # join group
@@ -19,8 +24,26 @@ class EchoWSConsumer(AsyncWebsocketConsumer):
         )
         
         await self.accept()
-        self.send("Connected.")
-    
+        await self.channel_layer.group_send(
+            self.groupName, {
+                "type":"messageEvent",
+                "message": "join"
+            }
+        )
+        await self.addMember()
+
+    @database_sync_to_async
+    def countMember(self):
+        return Member.objects.filter(
+            party__id=int(self.groupName)
+        ).count()
+
+    @database_sync_to_async
+    def addMember(self):
+        party= Party.objects.get(id = int(self.roomName))
+        member = User.objects.get(id=self.memberId)
+        Member.objects.create(party = party, member=member)
+
     async def disconnect(self, code):
     
         await self.channel_layer.group_discard(
@@ -28,22 +51,107 @@ class EchoWSConsumer(AsyncWebsocketConsumer):
         )
     
     async def receive(self, text_data=None, bytes_data=None):
-        
         data = json.loads(text_data)
         
         message = data['message']
-        
 
-        await self.channel_layer.group_send(
-            self.groupName, {
-                "type":"messageEvent",
-                "message":message
-            }
-        )
+        if message =="echo":
+            return await self.send(
+                text_data=json.dumps(
+                    {
+                        "message": "echoing back at you."
+                    }
+                )
+            )
         
+        if message =="vote":
+            placeid = data['placeid']
+            upvote = data['upvote']
+
+            await self.incrementvote(placeid, upvote)
+
+        if message =="start":
+            await self.channel_layer.group_send(
+                self.groupName,
+                {
+                    "type":"messageEvent",
+                    "message": "start"
+                }
+            )
+
+        if message == "finish":
+            finishcount, fullstop =  await self.finish() 
+
+            if fullstop:
+                await self.channel_layer.group_send(
+                self.groupName,
+                {
+                    "type":"messageEvent",
+                    "message": "fullstop"
+                }
+            )
+            else:
+                await self.channel_layer.group_send(
+                self.groupName,
+                {
+                    "type":"messageEvent",
+                    "message": f"finish count:{finishcount}"
+                }
+            )
+        
+        if message == "fullstop":
+            await self.channel_layer.group_send(
+                self.groupName,
+                {
+                    "type":"messageEvent",
+                    "message": "fullstop"
+                }
+            )
+
+    @database_sync_to_async
+    def finish(self):
+        count = Member.objects.filter(
+            party__id=int(self.groupName)
+        ).count()
+
+        finishcount = Member.objects.filter(
+            party__id=int(self.groupName),
+            finished=True
+        ).count()
+
+        return finishcount, finishcount == count
+            
+
+        
+    
+        
+    @database_sync_to_async
+    def incrementvote(self, placeid, inc = True):
+        view = Vote.objects.filter(
+            party__id = int(self.roomName),
+            placeid=placeid
+        )
+        if inc:
+            view.update(upvotes=F('upvotes')+1)
+        else:
+            view.update(downvotes=F("downvotes")+1)
+
     async def messageEvent(self, event):
         message = event['message']
         
-        await self.send(text_data=json.dumps({
-            "message": f"incoming: {message}"
-        }))
+        if message == "join":
+            return await self.send(text_data=json.dumps({
+                "message": f"total count:{await self.countMember()}"
+            }))
+
+
+        if 'finish' in message or message == "fullstop":
+            return await self.send(
+                text_data=json.dumps(
+                    {
+                        "message": message
+                    }
+                )
+            )
+        
+        

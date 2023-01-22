@@ -84,17 +84,19 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3",}}
-DATABASES    = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME' : 'postgres',
-        'USER' : 'postgres',
-        'PASSWORD': 'adminadmin',
-        'HOST': 'nommerdb.cx2c5egqxvuo.us-west-2.rds.amazonaws.com',
-        'PORT': '5432'
+if DEBUG:
+    DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3",}}
+else:
+    DATABASES    = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME' : 'postgres',
+            'USER' : 'postgres',
+            'PASSWORD': 'adminadmin',
+            'HOST': 'nommerdb.cx2c5egqxvuo.us-west-2.rds.amazonaws.com',
+            'PORT': '5432'
+        }
     }
-}
 
 
 # Password validation
@@ -131,11 +133,23 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # used by Daphne
 ASGI_APPLICATION = "nommerServer.asgi.application"
-CHANNEL_LAYERS = {
+
+
+if DEBUG:
+    CHANNEL_LAYERS = {
     "default": {
-        "BACKEND" : "channels_redis.core.RedisChannelLayer",
-        "CONFIG" : {
-            "hosts" : [('redis.dpr6ns.ng.0001.usw2.cache.amazonaws.com', 6379)]
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+else:
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND" : "channels_redis.core.RedisChannelLayer",
+            "CONFIG" : {
+                "hosts" : [('redis.dpr6ns.ng.0001.usw2.cache.amazonaws.com', 6379)]
+            }
         }
     }
-}

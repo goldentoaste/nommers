@@ -18,9 +18,9 @@ def signUp(request: Request):
 
     try:
         user = User.objects.create_user(
-            data['userName'],
+            data['username'],
             data['password'],
-            data['ppiUrl']
+            data['ppiurl']
         )
         serial = UserSerializer(user)
         return Response(serial.data, status=status.HTTP_201_CREATED)

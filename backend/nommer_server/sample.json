@@ -1,0 +1,40 @@
+{'results': [
+        {'address_components': [
+                {'long_name': 'Crescent Road', 'short_name': 'Crescent Rd', 'types': ['route'
+                    ]
+                },
+                {'long_name': 'UBC', 'short_name': 'UBC', 'types': ['neighborhood', 'political'
+                    ]
+                },
+                {'long_name': 'University Endowment Lands', 'short_name': 'University Endowment Lands', 'types': ['locality', 'political'
+                    ]
+                },
+                {'long_name': 'Greater Vancouver A', 'short_name': 'Greater Vancouver A', 'types': ['administrative_area_level_3', 'political'
+                    ]
+                },
+                {'long_name': 'Metro Vancouver', 'short_name': 'Metro Vancouver', 'types': ['administrative_area_level_2', 'political'
+                    ]
+                },
+                {'long_name': 
+    'British Columbia', 'short_name': 'BC', 'types': ['administrative_area_level_1', 'political'
+                    ]
+                },
+                {'long_name': 'Canada', 'short_name': 'CA', 'types': ['country', 'political'
+                    ]
+                },
+                {'long_name': 'V6T', 'short_name': 'V6T', 'types': ['postal_code', 'postal_code_prefix'
+                    ]
+                }
+            ], 'formatted_address': 'Crescent Rd, University Endowment Lands, BC V6T, Canada', 'geometry': {'bounds': {'northeast': {'lat': 49.2700769, 'lng': -123.2535208
+                    }, 'southwest': {'lat': 49.2676187, 'lng': -123.2584703
+                    }
+                }, 'location': {'lat': 49.2687311, 'lng': -123.2558618
+                }, 'location_type': 'GEOMETRIC_CENTER', 'viewport': {'northeast': {'lat': 49.27019678029151, 'lng': -123.2535208
+                    }, 'southwest': {'lat': 49.26749881970851, 'lng': -123.2584703
+                    }
+                }
+            }, 'place_id': 'ChIJURSARrFyhlQRkb-tKY80mWw', 'types': ['route'
+            ]
+        }
+    ], 'status': 'OK'
+}
