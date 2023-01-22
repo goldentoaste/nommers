@@ -1,52 +1,46 @@
-
-
 <script>
   import { accountId } from "../../account";
   import { onMount } from "svelte";
   let username = "";
-  let password= "";
+  let password = "";
 
-  onMount(async ()=>{
-    
-    if ($accountId && $accountId !== "null"){
-
-      window.location.href = "/home"
+  onMount(async () => {
+    if ($accountId && $accountId !== "null") {
+      window.location.href = "/home";
     }
-  })
+  });
 
-  const login = ()=>{
-
-    if (username.length == 0 || password.length == 0){
+  const login = () => {
+    if (username.length == 0 || password.length == 0) {
       return;
     }
 
-    fetch('http://server3-env.eba-7jgvjkan.us-west-2.elasticbeanstalk.com/signup/',
-    {
-      method: 'POST',
-      headers:{
-        'Accept':'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(
-        {
-          'userName':username,
-          'password':password,
-  
-        }
-      )
-    }).then((res)=>{
-      return res.json()
-    }).then(
-      (res)=>{
-        $accountId = res["id"]
-        console.log($accountId)
-        window.location.href = "/home"
+    fetch(
+      "http://server3-env.eba-7jgvjkan.us-west-2.elasticbeanstalk.com/signup/",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userName: username,
+          password: password,
+        }),
       }
-    ).catch((err)=>{
-      alert("Login failed!")
-    })
-
-  }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        $accountId = res["id"];
+        console.log($accountId);
+        window.location.href = "/home";
+      })
+      .catch((err) => {
+        alert("Login failed!");
+      });
+  };
 </script>
 
 <div class="login">
@@ -87,15 +81,20 @@
 
 <style>
   .login {
+    max-width: 100vw;
+    width: 100vw;
     height: 100vh;
     max-height: 100vh;
     display: flex;
     align-items: flex-end;
+    background-color: var(--secondary-400);
+    background-image: url("pattern-light-secondary.png");
   }
 
   .login-fields,
   .login-inputs,
   .login-actions {
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -103,9 +102,10 @@
   .login-fields {
     height: fit-content;
     background-color: white;
-    border-radius: var(--sp-md);
+    border-radius: var(--sp-md) var(--sp-md) 0 0;
     justify-content: space-between;
     padding: var(--sp-lg);
+    padding-top: var(--sp-3xl);
   }
 
   .login-inputs {
@@ -137,5 +137,25 @@
 
   .secondary-action {
     color: var(--secondary-500);
+  }
+
+  @media only screen and (min-width: 420px) {
+    .login-fields {
+      padding: var(--sp-xl);
+      padding-top: var(--sp-4xl);
+    }
+  }
+
+  @media only screen and (min-width: 800px) {
+    .login {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-fields {
+      width: 60%;
+      max-width: 720px;
+      border-radius: var(--sp-md);
+    }
   }
 </style>

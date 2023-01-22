@@ -61,7 +61,7 @@
 
 <style>
   .teammate-card {
-    background-color: white;
+    background-color: var(--primary-50);
     padding: var(--sp-md);
     border-radius: var(--sp-sm);
   }

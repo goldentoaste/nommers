@@ -10,6 +10,5 @@
     max-width: 100%;
     height: 4rem;
     object-fit: cover;
-    margin: var(--sp-lg) 0;
   }
 </style>

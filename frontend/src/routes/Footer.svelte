@@ -1,5 +1,8 @@
 <div class="footer">
-  <img src="nommers_logo.svg" />
+  <img
+    src="nommers-logo.png"
+    alt="Nommers logo"
+  />
   <p class="body-text"
     >Made with 💛 and 🍔 by Ray and Christina for nwHacks 2023</p
   >
@@ -9,19 +12,43 @@
       class="body-title"
       href="">GitHub</a
     >
+
+    ∙
+
     <a
       class="body-title"
       href="">DevPost</a
+    >
+
+    ∙
+
+    <a
+      class="body-title"
+      href="/login">Login</a
+    >
+
+    ∙
+
+    <a
+      class="body-title"
+      href="/signup">Sign up</a
     >
   </div>
 </div>
 
 <style>
   .footer > img {
-    margin-bottom: var(--sp-md);
+    margin-bottom: var(--sp-xs);
   }
   .footer {
-    padding: var(--sp-lg);
+    padding: var(--sp-xl);
     text-align: center;
+    background-color: var(--primary-100);
+    border-top: 2px solid var(--primary-200);
+  }
+
+  a,
+  a:visited {
+    color: black;
   }
 </style>
